@@ -1,0 +1,155 @@
+// C++ program to illustrate the use of one dimensional array for performing various Set Operations.
+
+#include<iostream>
+using namespace std;
+
+class setoperation     //Class declaration.
+{
+	int setunion;
+	int * setA;     
+	int * setB;    
+	public:
+ 		int findUnion();
+		int findIntersection();
+		int findA();
+		int findB();
+		int findNeither();
+		void acceptData();
+};
+
+int setoperation:: findUnion()  
+{
+	int count=0;
+	cout<<endl<<"Roll nos.";
+	for(int i=0;i<=setunion; i++)
+	if(setA[i]==1 || setB[i]==1)
+	{
+		count++;
+		cout<<i<<",";
+	}	
+return 0;
+}
+
+int setoperation:: findIntersection()
+{
+	int count=0;
+	for(int i=0;i<=setunion; i++)
+	if(setA[i]==1 && setB[i]==1)
+	{
+		count++;
+		cout<<i<<",";
+	}	
+return 0;
+}
+
+int setoperation:: findA()
+{
+	int count=0;
+	for(int i=0;i<=setunion; i++)
+	if(setA[i]==1 && setB[i]!=1)
+	{
+		count++;
+		cout<<i<<",";
+	}	
+return 0;
+}
+
+int setoperation:: findB()
+{
+	int count=0;
+	for(int i=0;i<=setunion; i++)
+	if(setA[i]!=1 && setB[i]==1)
+	{
+		count++;
+		cout<<i<<",";
+	}	
+return 0;
+}
+
+int setoperation:: findNeither()
+{
+	int count=0;
+	for(int i=0;i<=setunion; i++)
+	if(setA[i]!=1 && setB[i]!=1)
+	{
+		count++;
+		cout<<i<<",";
+	}
+return 0;	
+}
+
+void setoperation::acceptData()
+{
+	int totalstudent, cricketstudent, badmintonstudent;
+	cout<<"Enter the total number of student:";
+	cin>>totalstudent;
+	setunion=totalstudent;
+
+	setA = new int[totalstudent];
+	setB = new int[totalstudent];
+	
+	cout<<"Enter the number of student who play cricket and -1 to exit:";
+	
+	while(cin>>cricketstudent)
+	{
+		if(cricketstudent==-1)
+		break;
+		setA[cricketstudent]=1;
+	}
+	cout<<"Enter the number of student who play Badminton and -1 to exit:";
+
+	while(cin>>badmintonstudent)
+	{
+		if(badmintonstudent==-1)
+		break;
+		setB[badmintonstudent]=1;
+	}
+}
+
+int main()
+{
+ 	setoperation s;
+	s.acceptData();
+	int ch;
+	
+	do{
+		cout<<endl<<"======MENU=====";
+		cout<<endl<<"\n 1.Set of students who play either cricket or badminton or both";
+		cout<<endl<<"\n 2.Set of students who play both cricket and badminton";
+		cout<<endl<<"\n 3.Set of students who play only cricket";
+		cout<<endl<<"\n 4.Set of students who play only badminton";
+		cout<<endl<<"\n 5.Set of students who play neither cricket nor badminton ";
+		cout<<endl<<"\n 6.Exit"<<"\n";
+		cin>>ch;
+		
+		switch(ch)
+		{
+			case 1:
+			cout<<endl<<"\n 1.Set of students who play either cricket or badminton or both are:";
+			cout<<endl<<"Count :"<<s.findUnion();
+			break;
+			case 2:
+			cout<<endl<<"\n 2.Set of students who play both cricket and badminton are:";
+			cout<<s.findIntersection();
+			break;
+			case 3:
+			cout<<endl<<"\n 3.Set of students who play only cricket are:";
+			cout<<s.findA();
+			break;
+			case 4:
+			cout<<endl<<"\n 4.Set of students who play only badminton are:";
+			cout<<s.findB();
+			break;
+			case 5:
+			cout<<endl<<"\n  5.Set of students who play neither cricket nor badminton  are:";
+			cout<<s.findNeither();
+			break;
+			case 6:
+			break;
+			default:
+			cout<<endl<<"You entered wrong choice.";
+		}
+	}while(ch!=7);
+         return 0;
+
+}
